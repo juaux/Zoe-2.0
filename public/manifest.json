@@ -1,0 +1,13 @@
+{
+  "name": "Zoe",
+  "short_name": "Zoe",
+  "description": "Sistema de Gestão Escolar",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#FF4403",
+  "theme_color": "#FF4403",
+  "icons": [
+    { "src": "/logo.png", "sizes": "192x192", "type": "image/png", "purpose": "any maskable" },
+    { "src": "/logo.png", "sizes": "512x512", "type": "image/png", "purpose": "any maskable" }
+  ]
+}
