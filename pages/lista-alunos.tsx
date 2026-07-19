@@ -80,12 +80,12 @@ async function fetchAlunosQuery(): Promise<Aluno[]> {
 
 async function fetchTurmasQuery(): Promise<string[]> {
   const { data, error } = await supabase
-    .from('Turmas')
-    .select('nome')
+    .from('Cursos')
+    .select('curso')
     .eq('ativo', true)
-    .order('nome');
+    .order('curso');
   if (error) throw new Error(error.message);
-  return data.map(t => t.nome);
+  return data.map(t => t.curso);
 }
 
 function Avatar({ aluno, size = 40 }: { aluno: Aluno; size?: number }) {
@@ -305,13 +305,13 @@ export default function ListarAlunos() {
               <option value="nomeCompleto">Nome</option>
               <option value="matricula">Matrícula</option>
               <option value="cpf">CPF</option>
-              <option value="turma">Turma</option>
+              <option value="turma">Curso</option>
               <option value="email">Email</option>
             </select>
             {turmasList.length > 0 && (
               <select value={filterTurma} onChange={e => setFilterTurma(e.target.value)}
                 style={{ height: 34, padding: '0 10px', background: 'var(--nt-bg)', border: '1px solid var(--nt-border)', borderRadius: 7, fontSize: 14, color: 'var(--nt-text-secondary)', fontFamily: 'inherit', outline: 'none' }}>
-                <option value="">Todas as turmas</option>
+                <option value="">Todos os cursos</option>
                 {turmasList.map(t => <option key={t} value={t}>{t}</option>)}
               </select>
             )}
@@ -400,7 +400,7 @@ export default function ListarAlunos() {
                   <tr style={{ borderBottom: '1px solid var(--nt-border)', background: 'var(--nt-bg)' }}>
                     <th style={{ padding: '9px 14px', fontSize: 12, fontWeight: 600, color: 'var(--nt-text-muted)', textTransform: 'uppercase', letterSpacing: '0.08em', textAlign: 'left' }}>Aluno</th>
                     <th style={{ padding: '9px 14px', fontSize: 12, fontWeight: 600, color: 'var(--nt-text-muted)', textTransform: 'uppercase', letterSpacing: '0.08em', textAlign: 'left' }}>Matrícula</th>
-                    <th style={{ padding: '9px 14px', fontSize: 12, fontWeight: 600, color: 'var(--nt-text-muted)', textTransform: 'uppercase', letterSpacing: '0.08em', textAlign: 'left' }}>Turma</th>
+                    <th style={{ padding: '9px 14px', fontSize: 12, fontWeight: 600, color: 'var(--nt-text-muted)', textTransform: 'uppercase', letterSpacing: '0.08em', textAlign: 'left' }}>Curso</th>
                     <th style={{ padding: '9px 14px', fontSize: 12, fontWeight: 600, color: 'var(--nt-text-muted)', textTransform: 'uppercase', letterSpacing: '0.08em', textAlign: 'center' }}>Idade</th>
                     <th style={{ padding: '9px 14px', fontSize: 12, fontWeight: 600, color: 'var(--nt-text-muted)', textTransform: 'uppercase', letterSpacing: '0.08em', textAlign: 'center' }}>Sexo</th>
                     <th style={{ padding: '9px 14px', fontSize: 12, fontWeight: 600, color: 'var(--nt-text-muted)', textTransform: 'uppercase', letterSpacing: '0.08em', textAlign: 'center' }}>Ações</th>
@@ -571,10 +571,10 @@ export default function ListarAlunos() {
                       style={{ width: '100%', height: 36, padding: '0 10px', background: 'var(--nt-surface)', border: '1px solid var(--nt-border)', borderRadius: 7, fontSize: 15, color: 'var(--nt-text-primary)', fontFamily: 'inherit', outline: 'none', boxSizing: 'border-box' }} />
                   </div>
                   <div>
-                    <label style={{ fontSize: 15, fontWeight: 600, color: 'var(--nt-text-muted)', textTransform: 'uppercase', letterSpacing: '0.06em', display: 'block', marginBottom: 4 }}>Turma</label>
+                    <label style={{ fontSize: 15, fontWeight: 600, color: 'var(--nt-text-muted)', textTransform: 'uppercase', letterSpacing: '0.06em', display: 'block', marginBottom: 4 }}>Curso</label>
                     <select name="turma" value={formData.turma || ''} onChange={handleFormChange}
                       style={{ width: '100%', height: 36, padding: '0 10px', background: 'var(--nt-surface)', border: '1px solid var(--nt-border)', borderRadius: 7, fontSize: 15, color: 'var(--nt-text-primary)', fontFamily: 'inherit', outline: 'none', boxSizing: 'border-box' }}>
-                      <option value="">Selecione uma turma</option>
+                      <option value="">Selecione um curso</option>
                       {turmasList.map(turma => (
                         <option key={turma} value={turma}>{turma}</option>
                       ))}
@@ -693,7 +693,7 @@ export default function ListarAlunos() {
                     <InfoRow label="Matrícula" value={pdfAluno.matricula} />
                     <InfoRow label="Nascimento" value={pdfAluno.dataNascimento ? new Date(pdfAluno.dataNascimento).toLocaleDateString('pt-BR') : undefined} />
                     <InfoRow label="Idade" value={pdfAluno.idade ? `${pdfAluno.idade} anos` : undefined} />
-                    <InfoRow label="Turma" value={pdfAluno.turma} />
+                    <InfoRow label="Curso" value={pdfAluno.turma} />
                   </div>
                 </div>
                 <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 12 }}>

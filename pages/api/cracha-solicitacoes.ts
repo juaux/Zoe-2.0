@@ -3,9 +3,11 @@ import { createClient } from '@supabase/supabase-js';
 import { getServerSession } from 'next-auth';
 import { authOptions } from './auth/[...nextauth]';
 
+// Usa a chave anon — a tabela cracha_solicitacoes já tem RLS
+// permitindo leitura/escrita (a checagem de perfil é feita abaixo).
 const supabase = createClient(
   process.env.NEXT_PUBLIC_SUPABASE_URL!,
-  process.env.SUPABASE_SERVICE_ROLE_KEY!
+  process.env.NEXT_PUBLIC_SUPABASE_KEY!
 );
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {

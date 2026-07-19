@@ -18,7 +18,7 @@ export interface CampoConfig {
 export const CAMPOS_ALUNOS_DEFAULT: CampoConfig[] = [
   { key: 'nomeCompleto',        label: 'Nome Completo',           ativo: true, obrigatorio: true,  editavel: false },
   { key: 'dataNascimento',      label: 'Data de Nascimento',      ativo: true, obrigatorio: true,  editavel: false },
-  { key: 'turma',               label: 'Turma / Categoria',       ativo: true, obrigatorio: true,  editavel: false },
+  { key: 'turma',               label: 'Curso',       ativo: true, obrigatorio: true,  editavel: false },
   { key: 'sexo',                label: 'Sexo',                    ativo: true, obrigatorio: true,  editavel: true  },
   { key: 'rg',                  label: 'RG',                      ativo: true, obrigatorio: true,  editavel: true  },
   { key: 'cpf',                 label: 'CPF',                     ativo: true, obrigatorio: true,  editavel: true  },
@@ -39,7 +39,7 @@ export const CAMPOS_ALUNOS_DEFAULT: CampoConfig[] = [
 export const CAMPOS_TREIN_DEFAULT: CampoConfig[] = [
   { key: 'nomeCompleto',   label: 'Nome Completo',      ativo: true, obrigatorio: true,  editavel: false },
   { key: 'dataNascimento', label: 'Data de Nascimento', ativo: true, obrigatorio: true,  editavel: false },
-  { key: 'turma',          label: 'Turma Responsável',  ativo: true, obrigatorio: true,  editavel: false },
+  { key: 'turma',          label: 'Curso Responsável',  ativo: true, obrigatorio: true,  editavel: false },
   { key: 'sexo',           label: 'Sexo',               ativo: true, obrigatorio: true,  editavel: true  },
   { key: 'rg',             label: 'RG',                 ativo: true, obrigatorio: true,  editavel: true  },
   { key: 'cpf',            label: 'CPF',                ativo: true, obrigatorio: true,  editavel: true  },

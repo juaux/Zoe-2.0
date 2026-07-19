@@ -34,7 +34,7 @@ export default function CrachaCard({ aluno }: { aluno: CrachaAluno }) {
 
       {/* Cabeçalho — logo à esquerda, nome ao lado */}
       <div style={{
-        background: 'linear-gradient(135deg, #FF4403, #d93600)',
+        background: 'linear-gradient(135deg, #16A34A, #15803D)',
         padding: '10px 14px',
         display: 'flex',
         alignItems: 'center',
@@ -124,7 +124,7 @@ export default function CrachaCard({ aluno }: { aluno: CrachaAluno }) {
             {aluno.nomeCompleto}
           </div>
           {aluno.turma && (
-            <div style={{ fontSize: 10, fontWeight: 700, color: '#FF4403', marginBottom: 3 }}>
+            <div style={{ fontSize: 10, fontWeight: 700, color: '#16A34A', marginBottom: 3 }}>
               {aluno.turma}
             </div>
           )}

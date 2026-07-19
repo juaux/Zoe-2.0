@@ -24,11 +24,11 @@ const MESES = ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago', 'Set', 'O
 
 // Paleta do design
 const P = {
-  primary: '#006b56',
-  primaryCont: '#2bb696',
+  primary: '#16A34A',
+  primaryCont: '#4ADE80',
   onPrimary: '#ffffff',
-  onPrimCont: '#004133',
-  secondary: '#a63646',
+  onPrimCont: '#065F2E',
+  secondary: '#15803D',
   secondCont: '#ff7987',
   surface: '#f9f9ff',
   surfLow: '#f0f3ff',
@@ -197,7 +197,7 @@ export default function PortalProfessor() {
   // ── NAV ITEMS ─────────────────────────────────────────────────────────────
   const ABAS = [
     { id: 'chamada' as const, label: 'Chamada', icon: 'assignment' },
-    { id: 'turmas' as const, label: 'Turmas', icon: 'groups' },
+    { id: 'turmas' as const, label: 'Cursos', icon: 'groups' },
     { id: 'historico' as const, label: 'Histórico', icon: 'calendar_today' },
     { id: 'relatorio' as const, label: 'Relatório', icon: 'bar_chart' },
   ];
@@ -347,7 +347,7 @@ export default function PortalProfessor() {
                 {/* STATS */}
                 <section className="tp-stats">
                   {[
-                    { label: 'Total', val: alunos.length, sub: 'Alunos na turma', dot: P.primaryCont, valColor: P.primary },
+                    { label: 'Total', val: alunos.length, sub: 'Alunos no curso', dot: P.primaryCont, valColor: P.primary },
                     { label: 'Presentes', val: presentes, sub: 'Confirmados hoje', dot: P.primary, valColor: P.primary },
                     { label: 'Faltas', val: faltas, sub: 'Ausências registradas', dot: P.secondary, valColor: P.secondary },
                     { label: 'Sem Marcar', val: semMarcacao, sub: 'Pendente chamada', dot: P.outlineVar, valColor: P.onSurface },
@@ -367,7 +367,7 @@ export default function PortalProfessor() {
                 <section className="tp-controls">
                   <div style={{ display: 'flex', flexWrap: 'wrap', alignItems: 'flex-end', gap: 14, flex: 1 }}>
                     <div style={{ display: 'flex', flexDirection: 'column', gap: 5 }}>
-                      <label style={{ fontSize: 11, fontWeight: 600, color: P.onSurfVar, textTransform: 'uppercase', letterSpacing: '.05em' }}>Turma</label>
+                      <label style={{ fontSize: 11, fontWeight: 600, color: P.onSurfVar, textTransform: 'uppercase', letterSpacing: '.05em' }}>Curso</label>
                       <select value={turmaSel} onChange={e => { setTurmaSel(e.target.value); setPresencas({}); }} style={{ background: P.surfLow, border: `1px solid ${P.outlineVar}`, borderRadius: 8, padding: '8px 14px', fontSize: 14, color: P.onSurface, fontFamily: 'Inter,sans-serif', outline: 'none', cursor: 'pointer' }}>
                         {turmas.map(t => <option key={t} value={t}>{t}</option>)}
                       </select>
@@ -399,7 +399,7 @@ export default function PortalProfessor() {
                   {loadAlunos ? (
                     <div style={{ padding: 40, textAlign: 'center', color: P.outline }}><div style={{ width: 24, height: 24, border: `2px solid ${P.primaryCont}`, borderTopColor: 'transparent', borderRadius: '50%', animation: 'spin .8s linear infinite', margin: '0 auto' }} /></div>
                   ) : !alunos.length ? (
-                    <div style={{ padding: 48, textAlign: 'center', color: P.outline, fontSize: 14 }}>{turmaSel ? 'Nenhum aluno nessa turma.' : 'Selecione uma turma.'}</div>
+                    <div style={{ padding: 48, textAlign: 'center', color: P.outline, fontSize: 14 }}>{turmaSel ? 'Nenhum aluno nesse curso.' : 'Selecione um curso.'}</div>
                   ) : (
                     <div>
                       {alunos.map((a, i) => {
@@ -454,7 +454,7 @@ export default function PortalProfessor() {
                 <div style={{ display: 'flex', flexDirection: 'column', gap: 14 }}>
                   <div style={{ background: P.surfLowest, borderRadius: 10, border: `1px solid ${P.outlineVar}`, padding: '14px 18px', display: 'flex', gap: 12, flexWrap: 'wrap', alignItems: 'center' }}>
                     <div>
-                      <label style={{ fontSize: 11, fontWeight: 600, color: P.onSurfVar, textTransform: 'uppercase', letterSpacing: '.05em', display: 'block', marginBottom: 5 }}>Turma</label>
+                      <label style={{ fontSize: 11, fontWeight: 600, color: P.onSurfVar, textTransform: 'uppercase', letterSpacing: '.05em', display: 'block', marginBottom: 5 }}>Curso</label>
                       <div style={{ display: 'flex', gap: 6, flexWrap: 'wrap' }}>
                         {turmas.map(t => (
                           <button key={t} onClick={() => setTurmaHist(t)} style={{ padding: '5px 14px', borderRadius: 8, fontSize: 13, fontWeight: 600, cursor: 'pointer', border: 'none', background: turmaHist === t ? P.primary : P.surfLow, color: turmaHist === t ? '#fff' : P.onSurface }}>{t}</button>
@@ -479,7 +479,7 @@ export default function PortalProfessor() {
                       <span style={{ fontSize: 12, color: P.outline }}>{diasUnicos.length} aula(s)</span>
                     </div>
                     {alunosHist.length === 0 ? (
-                      <div style={{ padding: 40, textAlign: 'center', color: P.outline, fontSize: 14 }}>Selecione uma turma.</div>
+                      <div style={{ padding: 40, textAlign: 'center', color: P.outline, fontSize: 14 }}>Selecione um curso.</div>
                     ) : (
                       <table style={{ width: '100%', borderCollapse: 'collapse', minWidth: 500 }}>
                         <thead>
@@ -566,7 +566,7 @@ export default function PortalProfessor() {
 }
 
 function TurmaCard({ turma, onChamada }: { turma: string; onChamada: () => void }) {
-  const P_local = { primary: '#006b56', primaryCont: '#2bb696', onPrimCont: '#004133', surfLowest: '#ffffff', surfHigh: '#dee8ff', outline: '#6d7a74', outlineVar: '#bccac3', onSurface: '#121c2c' };
+  const P_local = { primary: '#16A34A', primaryCont: '#4ADE80', onPrimCont: '#065F2E', surfLowest: '#ffffff', surfHigh: '#dee8ff', outline: '#6d7a74', outlineVar: '#bccac3', onSurface: '#121c2c' };
   const { data: total = 0 } = useQuery({ queryKey: ['tc-total', turma], queryFn: async () => { const { count } = await supabase.from('Alunos').select('id', { count: 'exact', head: true }).eq('turma', turma); return count || 0; } });
   const { data: alunos = [] } = useQuery({ queryKey: ['tc-alunos', turma], queryFn: async () => { const { data } = await supabase.from('Alunos').select('id,nomeCompleto,fotoUrl').eq('turma', turma).limit(5); return data || []; } });
   return (
@@ -601,7 +601,7 @@ function TurmaCard({ turma, onChamada }: { turma: string; onChamada: () => void 
 }
 
 function RelatorioCard({ turma, mesSel, anoSel }: { turma: string; mesSel: number; anoSel: number }) {
-  const P_local = { primary: '#006b56', secondary: '#a63646', surfLowest: '#ffffff', outlineVar: '#bccac3', outline: '#6d7a74', onSurface: '#121c2c' };
+  const P_local = { primary: '#16A34A', secondary: '#15803D', surfLowest: '#ffffff', outlineVar: '#bccac3', outline: '#6d7a74', onSurface: '#121c2c' };
   const ini = `${anoSel}-${String(mesSel).padStart(2, '0')}-01`;
   const fim = new Date(anoSel, mesSel, 0).toISOString().slice(0, 10);
   const { data: chamadas = [] } = useQuery({ queryKey: ['rel', turma, mesSel, anoSel], queryFn: async () => { const { data } = await supabase.from('chamadas').select('presenca').eq('turma', turma).gte('data', ini).lte('data', fim); return data || []; } });

@@ -3,10 +3,11 @@ import { createClient } from '@supabase/supabase-js';
 import { getServerSession } from 'next-auth';
 import { authOptions } from './auth/[...nextauth]';
 
-// Service role para bypass de RLS em escritas
+// Usa a chave anon — a tabela configuracoes já tem RLS permitindo
+// leitura/escrita (a checagem de "é admin" é feita abaixo via sessão).
 const supabase = createClient(
   process.env.NEXT_PUBLIC_SUPABASE_URL!,
-  process.env.SUPABASE_SERVICE_ROLE_KEY || process.env.NEXT_PUBLIC_SUPABASE_KEY!
+  process.env.NEXT_PUBLIC_SUPABASE_KEY!
 );
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {

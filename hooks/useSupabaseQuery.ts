@@ -23,11 +23,11 @@ export function useTurmas() {
     queryKey: ['turmas'],
     queryFn: async () => {
       const { data, error } = await supabase
-        .from('Turmas')
+        .from('Cursos')
         .select('*')
-        .order('nome');
+        .order('curso');
       if (error) throw error;
-      return data || [];
+      return (data || []).map((c: any) => ({ ...c, nome: c.curso }));
     },
     staleTime: STALE_TIME,
   });

@@ -27,7 +27,7 @@ const COLORS: Record<string, { bg: string; text: string; light: string }> = {
   "Sub-20": { bg: "#0EA5E9", text: "#fff", light: "#F0F9FF" },
 };
 function getColor(nome: string) {
-  return COLORS[nome] || { bg: "#FF4403", text: "#fff", light: "#FFF3EE" };
+  return COLORS[nome] || { bg: "#16A34A", text: "#fff", light: "#FFF3EE" };
 }
 
 export default function TurmasPage() {

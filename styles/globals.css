@@ -1,14 +1,14 @@
-/* ─── NOVOS TEMPOS 2.0 — Design System ─── */
+/* ─── ZOE — Design System ─── */
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@400;500;600;700;800&display=swap');
 
 /* ══════════════════════════════════════
    LIGHT THEME (default)
 ══════════════════════════════════════ */
 :root {
-  --nt-primary:        #FF4403;
-  --nt-primary-dark:   #d93600;
-  --nt-primary-light:  #ff6b52;
-  --nt-primary-pale:   #fff2f0;
+  --nt-primary:        #16A34A;
+  --nt-primary-dark:   #15803D;
+  --nt-primary-light:  #4ADE80;
+  --nt-primary-pale:   #F0FDF4;
 
   --nt-secondary:      #26bf94;
   --nt-info:           #4bc5e8;

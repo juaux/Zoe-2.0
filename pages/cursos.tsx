@@ -1,15 +1,9 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { createClient } from "@supabase/supabase-js";
+import { supabase } from '../supabaseClient';
 import Layout from '../components/layout/Layout';
-import { FaToggleOn, FaToggleOff, FaPlus, FaEye, FaEyeSlash, FaSearch } from 'react-icons/fa';
-import { Delete, Edit, Visibility } from '@mui/icons-material';
-import { Avatar, IconButton } from '@mui/material';
-
-const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL || 'https://wvcsllnqceqjkfpfyyzu.supabase.co';
-const supabaseKey = process.env.NEXT_PUBLIC_SUPABASE_KEY || 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Ind2Y3NsbG5xY2VxamtmcGZ5eXp1Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDA5NDQ0NzcsImV4cCI6MjA1NjUyMDQ3N30.T3i4AhoPofS7lww_-wMzcPLbbok1h8j45yeY0oJ6v-g';
-const supabase = createClient(supabaseUrl, supabaseKey);
+import { FaToggleOn, FaToggleOff, FaPlus, FaEye, FaEyeSlash, FaSearch, FaPen, FaTrash } from 'react-icons/fa';
 
 interface Curso {
   id: number;
@@ -320,9 +314,11 @@ export default function CursosPage() {
                 {cursosFiltrados.map((curso, i) => (
                   <tr key={curso.id} style={{ borderBottom: i < cursosFiltrados.length - 1 ? '1px solid #f3f4f6' : 'none', background: !curso.ativo ? '#f9fafb' : '#fff' }}>
                     <td style={{ padding: '12px 16px' }}>
-                      <Avatar src={curso.imagem} sx={{ width: 36, height: 36, bgcolor: '#e0e7ff', color: '#4f46e5', fontSize: '14px', fontWeight: 700 }}>
-                        {curso.curso[0]}
-                      </Avatar>
+                      <div style={{ width: 36, height: 36, borderRadius: '50%', overflow: 'hidden', background: '#e0e7ff', color: '#4f46e5', fontSize: '14px', fontWeight: 700, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                        {curso.imagem
+                          ? <img src={curso.imagem} alt={curso.curso} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+                          : curso.curso[0]}
+                      </div>
                     </td>
                     <td style={{ padding: '12px 16px', fontWeight: 600, color: '#111827', fontSize: '14px' }}>{curso.curso}</td>
                     <td style={{ padding: '12px 16px', color: '#6b7280', fontSize: '13px' }}>{curso.descricao}</td>
@@ -338,15 +334,15 @@ export default function CursosPage() {
                     </td>
                     <td style={{ padding: '12px 16px' }}>
                       <div style={{ display: 'flex', alignItems: 'center', gap: '4px' }}>
-                        <IconButton size="small" onClick={() => abrirModalEditar(curso)} title="Editar" sx={{ color: '#3b82f6' }}>
-                          <Edit fontSize="small" />
-                        </IconButton>
-                        <IconButton size="small" onClick={() => excluirCurso(curso.id)} title="Excluir" sx={{ color: '#ef4444' }}>
-                          <Delete fontSize="small" />
-                        </IconButton>
-                        <IconButton size="small" onClick={() => toggleAtivo(curso)} title={curso.ativo ? 'Desativar' : 'Ativar'} sx={{ color: curso.ativo ? '#f59e0b' : '#22c55e' }}>
+                        <button onClick={() => abrirModalEditar(curso)} title="Editar" style={{ background: 'none', border: 'none', cursor: 'pointer', color: '#3b82f6', padding: 6, display: 'flex' }}>
+                          <FaPen size={14} />
+                        </button>
+                        <button onClick={() => excluirCurso(curso.id)} title="Excluir" style={{ background: 'none', border: 'none', cursor: 'pointer', color: '#ef4444', padding: 6, display: 'flex' }}>
+                          <FaTrash size={14} />
+                        </button>
+                        <button onClick={() => toggleAtivo(curso)} title={curso.ativo ? 'Desativar' : 'Ativar'} style={{ background: 'none', border: 'none', cursor: 'pointer', color: curso.ativo ? '#f59e0b' : '#22c55e', padding: 6, display: 'flex' }}>
                           {curso.ativo ? <FaToggleOn size={18} /> : <FaToggleOff size={18} />}
-                        </IconButton>
+                        </button>
                       </div>
                     </td>
                   </tr>

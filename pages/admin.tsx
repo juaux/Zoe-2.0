@@ -116,7 +116,7 @@ function Toggle({ on, onChange, disabled }: { on:boolean; onChange:(v:boolean)=>
   return (
     <button onClick={() => !disabled && onChange(!on)} disabled={disabled}
       style={{ width:42, height:24, borderRadius:12, border:'none', cursor: disabled?'not-allowed':'pointer',
-        background: on ? '#FF4403' : '#D1D5DB', position:'relative', transition:'background 0.2s', flexShrink:0, opacity: disabled?0.5:1 }}>
+        background: on ? '#16A34A' : '#D1D5DB', position:'relative', transition:'background 0.2s', flexShrink:0, opacity: disabled?0.5:1 }}>
       <div style={{ position:'absolute', top:3, left: on?20:3, width:18, height:18, borderRadius:'50%', background:'#fff', transition:'left 0.2s', boxShadow:'0 1px 4px rgba(0,0,0,0.2)' }} />
     </button>
   );
@@ -228,7 +228,7 @@ function SecaoCampos({ tipo }: { tipo: 'alunos' | 'professores' }) {
                     <div style={{ display:'flex', alignItems:'center', gap:8 }}>
                       <input type="checkbox" id={`obr-${tipo}-${campo.key}`} checked={campo.obrigatorio} disabled={!campo.editavel || !campo.ativo}
                         onChange={e => toggle(campo.key, 'obrigatorio', e.target.checked)}
-                        style={{ width:15, height:15, accentColor:'#FF4403', cursor: campo.editavel?'pointer':'not-allowed' }} />
+                        style={{ width:15, height:15, accentColor:'#16A34A', cursor: campo.editavel?'pointer':'not-allowed' }} />
                       <label htmlFor={`obr-${tipo}-${campo.key}`} style={{ fontSize:13, color:'var(--nt-text-secondary)', cursor: campo.editavel?'pointer':'default', whiteSpace:'nowrap' }}>Obrigatório</label>
                     </div>
                     <div style={{ display:'flex', alignItems:'center', gap:8 }}>
@@ -378,7 +378,7 @@ function SecaoTurmas() {
             Nenhuma turma. Use "Criar Sub Padrão" para criar as categorias padrão.
           </div>
         ) : turmas.map((t, i) => (
-          <div key={t.id} style={{ display:'grid', gridTemplateColumns:'120px 140px 1fr 80px 120px', gap:12, padding:'14px 20px', borderBottom: i<turmas.length-1?'1px solid var(--nt-border)':'none', alignItems:'center', background: editIdx===i?'rgba(255,68,3,0.02)':'transparent' }}>
+          <div key={t.id} style={{ display:'grid', gridTemplateColumns:'120px 140px 1fr 80px 120px', gap:12, padding:'14px 20px', borderBottom: i<turmas.length-1?'1px solid var(--nt-border)':'none', alignItems:'center', background: editIdx===i?'rgba(22,163,74,0.02)':'transparent' }}>
             {editIdx === i ? (
               <>
                 <input value={editData.nome||''} onChange={e=>setEditData(d=>({...d,nome:e.target.value}))} style={inp} />
@@ -421,7 +421,7 @@ function SecaoTurmas() {
 // SEÇÃO: SISTEMA
 // ─────────────────────────────────────────────────────────────────────────────
 function SecaoSistema() {
-  const DEFAULT_SIS: SistemaConfig = { nome_escola: 'Zoe', subtitulo_escola: 'Gestão Escolar', primary_color: '#FF4403' };
+  const DEFAULT_SIS: SistemaConfig = { nome_escola: 'Zoe', subtitulo_escola: 'Gestão Escolar', primary_color: '#16A34A' };
   const [config, setConfig] = useState<SistemaConfig>(DEFAULT_SIS);
   const [loadingSis, setLoadingSis] = useState(true);
   const [saving, setSaving] = useState(false);
@@ -485,7 +485,7 @@ function SecaoSistema() {
             <div style={{ display:'flex', alignItems:'center', gap:12 }}>
               <input type="color" value={config.primary_color} onChange={e=>setConfig(c=>({...c,primary_color:e.target.value}))}
                 style={{ width:56, height:42, borderRadius:8, border:'1px solid var(--nt-border-md)', cursor:'pointer', padding:2 }} />
-              <input value={config.primary_color} onChange={e=>setConfig(c=>({...c,primary_color:e.target.value}))} style={{ ...inp, flex:1 }} placeholder="#FF4403" />
+              <input value={config.primary_color} onChange={e=>setConfig(c=>({...c,primary_color:e.target.value}))} style={{ ...inp, flex:1 }} placeholder="#16A34A" />
             </div>
           </div>
           <div style={{ display:'flex', alignItems:'flex-end' }}>
@@ -506,17 +506,16 @@ function SecaoSistema() {
   );
 }
 
-type Tab = 'turmas' | 'campos-alunos' | 'campos-trein' | 'sistema';
+type Tab = 'campos-alunos' | 'campos-trein' | 'sistema';
 
 const TABS: { id: Tab; label: string; desc: string; icon: string }[] = [
-  { id: 'turmas',        label: 'Turmas',               desc: 'Gerenciar turmas e categorias', icon: '🏫' },
   { id: 'campos-alunos', label: 'Campos de Alunos',    desc: 'Configurar campos do cadastro',  icon: '👤' },
   { id: 'campos-trein',  label: 'Campos de Professores', desc: 'Configurar campos do cadastro', icon: '🏋️' },
   { id: 'sistema',       label: 'Sistema',              desc: 'Configurações gerais',          icon: '⚙️' },
 ];
 
 export default function Admin() {
-  const [tab, setTab] = useState<Tab>('turmas');
+  const [tab, setTab] = useState<Tab>('campos-alunos');
   const active = TABS.find(t => t.id === tab)!;
 
   return (
@@ -556,15 +555,15 @@ export default function Admin() {
               <button key={t.id} onClick={() => setTab(t.id)}
                 style={{
                   width:'100%', display:'flex', alignItems:'center', gap:12,
-                  padding:'12px 16px', background: tab===t.id ? '#FFF2F0' : 'transparent',
-                  borderLeft: tab===t.id ? '3px solid #FF4403' : '3px solid transparent',
+                  padding:'12px 16px', background: tab===t.id ? '#F0FDF4' : 'transparent',
+                  borderLeft: tab===t.id ? '3px solid #16A34A' : '3px solid transparent',
                   border:'none', cursor:'pointer', textAlign:'left',
                 }}>
-                <div style={{ width:34, height:34, borderRadius:8, background: tab===t.id?'#FF4403':'var(--nt-bg)', color: tab===t.id?'#fff':'var(--nt-text-muted)', display:'flex', alignItems:'center', justifyContent:'center', fontSize:14, flexShrink:0 }}>
+                <div style={{ width:34, height:34, borderRadius:8, background: tab===t.id?'#16A34A':'var(--nt-bg)', color: tab===t.id?'#fff':'var(--nt-text-muted)', display:'flex', alignItems:'center', justifyContent:'center', fontSize:14, flexShrink:0 }}>
                   {t.icon}
                 </div>
                 <div>
-                  <div style={{ fontSize:13, fontWeight: tab===t.id?700:500, color: tab===t.id?'#FF4403':'var(--nt-text-primary)' }}>{t.label}</div>
+                  <div style={{ fontSize:13, fontWeight: tab===t.id?700:500, color: tab===t.id?'#16A34A':'var(--nt-text-primary)' }}>{t.label}</div>
                   <div style={{ fontSize:11, color:'var(--nt-text-muted)', marginTop:1 }}>{t.desc}</div>
                 </div>
               </button>
@@ -575,7 +574,7 @@ export default function Admin() {
           <div style={{ flex:1, minWidth:0 }}>
             <div style={{ background:'var(--nt-surface)', borderRadius:12, border:'1px solid var(--nt-border)', padding:'6px 20px 16px', marginBottom:16 }}>
               <div style={{ display:'flex', alignItems:'center', gap:10, padding:'14px 0' }}>
-                <div style={{ width:36, height:36, borderRadius:8, background:'#FF4403', color:'#fff', display:'flex', alignItems:'center', justifyContent:'center', fontSize:15 }}>{active.icon}</div>
+                <div style={{ width:36, height:36, borderRadius:8, background:'#16A34A', color:'#fff', display:'flex', alignItems:'center', justifyContent:'center', fontSize:15 }}>{active.icon}</div>
                 <div>
                   <div style={{ fontSize:15, fontWeight:700, color:'var(--nt-text-primary)' }}>{active.label}</div>
                   <div style={{ fontSize:12.5, color:'var(--nt-text-secondary)' }}>{active.desc}</div>
@@ -583,7 +582,6 @@ export default function Admin() {
               </div>
             </div>
 
-            {tab === 'turmas'        && <SecaoTurmas />}
             {tab === 'campos-alunos' && <SecaoCampos tipo="alunos" />}
             {tab === 'campos-trein'  && <SecaoCampos tipo="professores" />}
             {tab === 'sistema'       && <SecaoSistema />}

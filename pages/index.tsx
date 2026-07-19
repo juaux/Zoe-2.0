@@ -251,7 +251,7 @@ export default function Home() {
     }).filter(a=>a.pct!==null && a.pct<75).sort((a,b)=>(a.pct??100)-(b.pct??100)).slice(0,5);
   }, [alunos, chamadaMes]);
 
-  const TURMA_CORES = ['#FF4403','#26bf94','#4bc5e8','#f5b849','#8b5cf6','#ec4899'];
+  const TURMA_CORES = ['#16A34A','#26bf94','#4bc5e8','#f5b849','#8b5cf6','#ec4899'];
 
   return (
     <>
@@ -269,7 +269,7 @@ export default function Home() {
               <div style={{ fontSize:13, color:'var(--nt-text-secondary)', marginTop:4 }}>{diaSemana()}, {new Date().toLocaleDateString('pt-BR',{day:'2-digit',month:'long',year:'numeric'})}</div>
             </div>
             <div className="nt-dash-header-btns">
-              <Link href="/professor" style={{ display:'flex', alignItems:'center', gap:8, padding:'12px 20px', background:'var(--nt-primary)', color:'#fff', borderRadius:10, fontSize:13, fontWeight:700, textDecoration:'none', boxShadow:'0 4px 14px rgba(255,68,3,.25)' }}>
+              <Link href="/professor" style={{ display:'flex', alignItems:'center', gap:8, padding:'12px 20px', background:'var(--nt-primary)', color:'#fff', borderRadius:10, fontSize:13, fontWeight:700, textDecoration:'none', boxShadow:'0 4px 14px rgba(22,163,74,.25)' }}>
                 <FaClipboardList style={{ fontSize:13 }} /> Lançar Chamada
               </Link>
               <Link href="/alunos" style={{ display:'flex', alignItems:'center', gap:8, padding:'12px 20px', background:'#fff', color:'var(--nt-primary)', border:'1.5px solid var(--nt-primary)', borderRadius:10, fontSize:13, fontWeight:700, textDecoration:'none' }}>
@@ -286,12 +286,12 @@ export default function Home() {
             {[
               { icon:<FaUserAlt />,            value: totalAlunos,        label:'Alunos',      sub:`+${matriculasMes} este mês`,          color:'var(--nt-primary)', href:'/alunos' },
               { icon:<FaDumbbell />,           value: professores,        label:'Professores', sub:'Equipe ativa',                        color:'#5c6182',           href:'/professores' },
-              { icon:<FaLayerGroup />,         value: turmasList.length,  label:'Turmas',      sub:'Horários ativos',                     color:'#5c6182',           href:'/turmas' },
+              { icon:<FaLayerGroup />,         value: turmasList.length,  label:'Cursos',      sub:'Horários ativos',                     color:'#5c6182',           href:'/cursos' },
               { icon:<FaExclamationTriangle />,value: alertasFreq.length, label:'Alertas',     sub:'Frequência < 75%',                    color:'var(--nt-danger)',  href:'/relatorios?tab=alertas' },
             ].map((m,i)=>(
               <Link key={i} href={m.href} style={{ textDecoration:'none' }}>
                 <div style={{ background:'#fff', padding:'20px 22px', borderRadius:14, boxShadow:'0 1px 3px rgba(20,20,43,.06)', borderLeft:`4px solid ${m.color}`, display:'flex', justifyContent:'space-between', alignItems:'flex-start', transition:'transform .15s, box-shadow .15s', cursor:'pointer' }}
-                  onMouseEnter={e=>{ (e.currentTarget as HTMLDivElement).style.transform='translateY(-3px)'; (e.currentTarget as HTMLDivElement).style.boxShadow='0 10px 25px -5px rgba(255,68,3,.12)'; }}
+                  onMouseEnter={e=>{ (e.currentTarget as HTMLDivElement).style.transform='translateY(-3px)'; (e.currentTarget as HTMLDivElement).style.boxShadow='0 10px 25px -5px rgba(22,163,74,.12)'; }}
                   onMouseLeave={e=>{ (e.currentTarget as HTMLDivElement).style.transform='translateY(0)'; (e.currentTarget as HTMLDivElement).style.boxShadow='0 1px 3px rgba(20,20,43,.06)'; }}
                 >
                   <div>
@@ -390,7 +390,7 @@ export default function Home() {
                     return (
                       <Link key={t.id} href="/professor" style={{ textDecoration:'none' }}>
                         <div style={{ display:'flex', alignItems:'center', justifyContent:'space-between', padding:'14px 16px', background:'var(--nt-bg)', borderRadius:10, border:'1px solid transparent', transition:'border-color .15s', gap:12, flexWrap:'wrap' }}
-                          onMouseEnter={e=>{ (e.currentTarget as HTMLDivElement).style.borderColor='rgba(255,68,3,.2)'; }}
+                          onMouseEnter={e=>{ (e.currentTarget as HTMLDivElement).style.borderColor='rgba(22,163,74,.2)'; }}
                           onMouseLeave={e=>{ (e.currentTarget as HTMLDivElement).style.borderColor='transparent'; }}
                         >
                           <div style={{ display:'flex', alignItems:'center', gap:14 }}>
@@ -438,7 +438,7 @@ export default function Home() {
               <section style={{ background:'#fff', borderRadius:14, boxShadow:'0 1px 3px rgba(20,20,43,.06)', overflow:'hidden' }}>
                 <div style={{ padding:'16px 22px', borderBottom:'1px solid var(--nt-border)', display:'flex', alignItems:'center', gap:8 }}>
                   <FaChartBar style={{ color:'var(--nt-primary)', fontSize:14 }} />
-                  <h3 style={{ fontSize:16, fontWeight:700, color:'var(--nt-text-primary)' }}>Frequência por Turma · {nomeMes[0].toUpperCase()+nomeMes.slice(1)}</h3>
+                  <h3 style={{ fontSize:16, fontWeight:700, color:'var(--nt-text-primary)' }}>Frequência por Curso · {nomeMes[0].toUpperCase()+nomeMes.slice(1)}</h3>
                 </div>
                 <div style={{ padding:'18px 22px', display:'flex', flexDirection:'column', gap:14 }}>
                   {loading ? (
@@ -554,7 +554,7 @@ export default function Home() {
               </section>
 
               {/* Aniversariantes */}
-              <section style={{ background:'var(--nt-primary)', borderRadius:14, boxShadow:'0 8px 24px rgba(255,68,3,.18)', padding:22, color:'#fff', position:'relative', overflow:'hidden' }}>
+              <section style={{ background:'var(--nt-primary)', borderRadius:14, boxShadow:'0 8px 24px rgba(22,163,74,.18)', padding:22, color:'#fff', position:'relative', overflow:'hidden' }}>
                 <div style={{ position:'absolute', bottom:-40, right:-40, width:160, height:160, borderRadius:'50%', background:'rgba(255,255,255,.08)', pointerEvents:'none' }} />
                 <div style={{ position:'absolute', top:-30, left:-30, width:110, height:110, borderRadius:'50%', background:'rgba(255,255,255,.05)', pointerEvents:'none' }} />
                 <div style={{ position:'relative', zIndex:1 }}>
@@ -600,7 +600,7 @@ export default function Home() {
                     { href:'/usuarios',    label:'Usuários e Logins',       icon:<FaUserShield /> },
                     { href:'/alunos?tab=lista',      label:'Lista de Alunos',         icon:<FaUserAlt /> },
                     { href:'/professores?tab=lista', label:'Professores',             icon:<FaDumbbell /> },
-                    { href:'/turmas',      label:'Turmas',                  icon:<FaLayerGroup /> },
+                    { href:'/cursos',      label:'Cursos',                  icon:<FaLayerGroup /> },
                   ].map(item=>(
                     <Link key={item.href} href={item.href}
                       style={{ display:'flex',alignItems:'center',gap:10,padding:'10px 8px',borderRadius:8,textDecoration:'none',transition:'background .15s' }}

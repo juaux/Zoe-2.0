@@ -203,7 +203,7 @@ export default function Chamada() {
             <div style={{ padding: '16px 20px', display: 'flex', gap: 16, flexWrap: 'wrap', alignItems: 'flex-end' }}>
               {/* Turma */}
               <div style={{ display: 'flex', flexDirection: 'column', gap: 6 }}>
-                <label style={{ fontSize: 11, fontWeight: 700, color: 'var(--nt-text-muted)', textTransform: 'uppercase', letterSpacing: '0.08em' }}>Turma</label>
+                <label style={{ fontSize: 11, fontWeight: 700, color: 'var(--nt-text-muted)', textTransform: 'uppercase', letterSpacing: '0.08em' }}>Curso</label>
                 <div style={{ display: 'flex', gap: 6 }}>
                   {turmasDisponiveis.map(t => (
                     <button

@@ -1,11 +1,12 @@
 import { NextApiRequest, NextApiResponse } from 'next';
 import { createClient } from '@supabase/supabase-js';
 import { getServerSession } from 'next-auth';
+import bcrypt from 'bcryptjs';
 import { authOptions } from './[...nextauth]';
 
 const supabase = createClient(
   process.env.NEXT_PUBLIC_SUPABASE_URL!,
-  process.env.SUPABASE_SERVICE_ROLE_KEY!
+  process.env.NEXT_PUBLIC_SUPABASE_KEY!
 );
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
@@ -19,21 +20,17 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       .from('usuarios')
       .select('id, nome, email, perfil, ativo, aluno_id, professor_id, created_at')
       .order('id', { ascending: false });
-
     if (error) return res.status(500).json({ error: error.message });
     return res.status(200).json(data);
   }
 
   if (req.method === 'PATCH') {
     const { id, ativo, senha } = req.body;
-    const updates: any = {};
-    if (typeof ativo === 'boolean') updates.ativo = ativo;
-    if (senha) {
-      const bcrypt = require('bcrypt');
-      updates.senha_hash = await bcrypt.hash(senha, 10);
-    }
+    const update: any = {};
+    if (typeof ativo === 'boolean') update.ativo = ativo;
+    if (senha) update.senha_hash = await bcrypt.hash(senha, 10);
 
-    const { error } = await supabase.from('usuarios').update(updates).eq('id', id);
+    const { error } = await supabase.from('usuarios').update(update).eq('id', id);
     if (error) return res.status(500).json({ error: error.message });
     return res.status(200).json({ message: 'Atualizado' });
   }

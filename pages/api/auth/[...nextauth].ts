@@ -1,11 +1,15 @@
 import NextAuth, { NextAuthOptions } from 'next-auth';
 import CredentialsProvider from 'next-auth/providers/credentials';
 import { createClient } from '@supabase/supabase-js';
-import bcrypt from 'bcrypt';
+import bcrypt from 'bcryptjs';
 
-const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL!;
-const supabaseKey = process.env.SUPABASE_SERVICE_ROLE_KEY!;
-const supabase = createClient(supabaseUrl, supabaseKey);
+// Chave anon — sem RPC (o cache de schema do PostgREST vinha travando
+// pra funções novas nesse projeto). Consulta direta na tabela, com
+// RLS liberando SELECT em usuarios (ver migration 0014).
+const supabase = createClient(
+  process.env.NEXT_PUBLIC_SUPABASE_URL!,
+  process.env.NEXT_PUBLIC_SUPABASE_KEY!
+);
 
 export const authOptions: NextAuthOptions = {
   secret: process.env.NEXTAUTH_SECRET,
@@ -21,25 +25,21 @@ export const authOptions: NextAuthOptions = {
         if (!credentials?.email || !credentials?.password) return null;
 
         try {
-          // Busca sem filtrar ativo na query (evita problema de tipo boolean vs int)
           const { data: user, error } = await supabase
             .from('usuarios')
             .select('id, nome, email, senha_hash, perfil, ativo, aluno_id, professor_id')
             .eq('email', credentials.email.trim().toLowerCase())
             .maybeSingle();
 
-          if (error || !user) return null;
-
-          // Verifica ativo separadamente (aceita true, 1, "true")
-          if (!user.ativo) {
+          if (error) {
+            console.error('[AUTH] erro ao buscar usuario:', error);
             return null;
           }
+          if (!user || !user.ativo) return null;
 
-          // Verifica senha
-          const ok = await bcrypt.compare(credentials.password, user.senha_hash);
-          if (!ok) return null;
+          const senhaOk = await bcrypt.compare(credentials.password, user.senha_hash);
+          if (!senhaOk) return null;
 
-          // Verifica perfil (todos os perfis, inclusive admin)
           if (credentials.perfil && user.perfil !== credentials.perfil) {
             return null;
           }

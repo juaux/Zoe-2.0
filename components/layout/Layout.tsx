@@ -43,7 +43,7 @@ const NAV_SECTIONS = [
           { label: 'Lista de Professores', href: '/lista-professores' },
         ]
       },
-      { label: 'Turmas', href: '/turmas', icon: <FaBookOpen /> },
+      { label: 'Cursos', href: '/cursos', icon: <FaBookOpen /> },
     ] as NavItem[],
   },
   {
@@ -68,7 +68,7 @@ const PAGE_TITLES: Record<string, string> = {
   '/lista-alunos': 'Lista de Alunos',
   '/professores': 'Professores',
   '/lista-professores': 'Lista de Professores',
-  '/turmas': 'Turmas',
+  '/cursos': 'Cursos',
   '/professor': 'Portal do Professor',
   '/chamada': 'Chamada',
   '/relatorios': 'Relatórios',
@@ -153,7 +153,7 @@ function NotificationBell({ size = 'desktop' }: { size?: 'desktop' | 'mobile' })
               {notificacoes.length === 0 ? (
                 <div style={{ padding: '28px 16px', textAlign: 'center', fontSize: 12.5, color: 'var(--nt-text-muted)' }}>Nenhuma notificação.</div>
               ) : notificacoes.map((n: any) => (
-                <div key={n.id} style={{ display: 'flex', gap: 10, padding: '12px 16px', borderBottom: '1px solid var(--nt-border)', background: n.lida ? 'transparent' : 'rgba(255,68,3,.04)' }}>
+                <div key={n.id} style={{ display: 'flex', gap: 10, padding: '12px 16px', borderBottom: '1px solid var(--nt-border)', background: n.lida ? 'transparent' : 'rgba(22,163,74,.04)' }}>
                   <div style={{ flex: 1, minWidth: 0 }}>
                     <div style={{ fontSize: 12.5, fontWeight: n.lida ? 500 : 700, color: 'var(--nt-text-primary)' }}>{n.titulo}</div>
                     {n.mensagem && <div style={{ fontSize: 11.5, color: 'var(--nt-text-secondary)', marginTop: 2 }}>{n.mensagem}</div>}
@@ -341,7 +341,7 @@ const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
       width: isMobile ? 280 : sidebarW,
       minWidth: isMobile ? 280 : sidebarW,
       height: '100%',
-      background: 'linear-gradient(180deg, #FF4403 0%, #c93200 100%)',
+      background: 'linear-gradient(180deg, #16A34A 0%, #15803D 100%)',
       display: 'flex',
       flexDirection: 'column',
       overflow: 'hidden',
@@ -578,7 +578,7 @@ const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
         width: sidebarW, minWidth: sidebarW, height: '100vh',
         transition: 'width 0.25s cubic-bezier(0.4,0,0.2,1)',
         flexShrink: 0, zIndex: 50,
-        boxShadow: isTablet && !collapsed ? 'none' : '2px 0 20px rgba(255,68,3,0.2)',
+        boxShadow: isTablet && !collapsed ? 'none' : '2px 0 20px rgba(22,163,74,0.2)',
         // No tablet expandido, a sidebar flutua por cima do conteúdo
         // (não empurra o layout), evitando espremer a tela.
         position: isTablet && !collapsed ? 'fixed' : 'relative',

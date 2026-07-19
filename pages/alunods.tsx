@@ -674,7 +674,7 @@ export default function Alunos() {
                 cursor: loading ? 'not-allowed' : 'pointer',
                 display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 8,
                 transition: 'background 0.15s',
-                boxShadow: '0 -2px 12px rgba(255,68,3,0.15)',
+                boxShadow: '0 -2px 12px rgba(22,163,74,0.15)',
                 touchAction: 'manipulation',
               }}>
               {loading
@@ -725,7 +725,7 @@ export default function Alunos() {
       <style>{`
         @keyframes spin { to { transform: rotate(360deg); } }
         @keyframes slideIn { from { transform: translateX(20px); opacity: 0; } to { transform: translateX(0); opacity: 1; } }
-        input:focus, select:focus { border-color: var(--nt-primary) !important; box-shadow: 0 0 0 3px rgba(255,68,3,0.1); }
+        input:focus, select:focus { border-color: var(--nt-primary) !important; box-shadow: 0 0 0 3px rgba(22,163,74,0.1); }
       `}</style>
     </Layout>
   );

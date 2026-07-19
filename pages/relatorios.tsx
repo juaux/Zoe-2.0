@@ -83,12 +83,12 @@ export default function Relatorios() {
   const { data: turmasRaw = [] } = useQuery({
     queryKey: ['turmas-nomes'],
     queryFn: async () => {
-      const { data } = await supabase.from('Turmas').select('nome').eq('ativo', true).order('nome');
+      const { data } = await supabase.from('Cursos').select('curso').eq('ativo', true).order('curso');
       return data || [];
     },
     staleTime: 1000 * 60 * 10,
   });
-  const turmas = turmasRaw.map((t: any) => t.nome);
+  const turmas = turmasRaw.map((t: any) => t.curso);
   const loading = loadingAlunos || loadingChamadas;
 
   // ── cálculos ──────────────────────────────────────────────────────────────
@@ -148,7 +148,7 @@ export default function Relatorios() {
   const handleExport = () => {
     const rows = statsAluno.map(a => ({
       Nome: a.nomeCompleto,
-      Turma: a.turma || '—',
+      Curso: a.turma || '—',
       'Aulas registradas': a.total,
       Presenças: a.presentes,
       Faltas: a.faltas,
@@ -163,7 +163,7 @@ export default function Relatorios() {
   const TABS: { id: Tab; label: string; icon: React.ReactNode }[] = [
     { id: 'geral',     label: 'Visão Geral',    icon: <FaChartBar /> },
     { id: 'alertas',   label: `Alertas${alertas.length > 0 ? ` (${alertas.length})` : ''}`, icon: <FaExclamationTriangle /> },
-    { id: 'turmas',    label: 'Por Turma',      icon: <FaUsers /> },
+    { id: 'turmas',    label: 'Por Curso',      icon: <FaUsers /> },
     { id: 'historico', label: 'Por Aluno',      icon: <FaUserAlt /> },
   ];
 
@@ -194,7 +194,7 @@ export default function Relatorios() {
               </select>
               <select value={filterTurma} onChange={e => setFilterTurma(e.target.value)}
                 style={{ height: 36, padding: '0 10px', border: '1px solid var(--nt-border)', borderRadius: 8, fontSize: 13, color: 'var(--nt-text-primary)', fontFamily: 'inherit', outline: 'none', background: 'var(--nt-surface)', cursor: 'pointer' }}>
-                <option value="">Todas as turmas</option>
+                <option value="">Todos os cursos</option>
                 {turmas.map(t => <option key={t} value={t}>{t}</option>)}
               </select>
               <button onClick={handleExport}
@@ -207,7 +207,7 @@ export default function Relatorios() {
           {/* KPIs gerais */}
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(160px, 1fr))', gap: 12 }}>
             {[
-              { label: 'Alunos',        val: alunosFiltrados.length, icon: <FaUserAlt />,       color: '#FF4403', bg: '#fff2f0' },
+              { label: 'Alunos',        val: alunosFiltrados.length, icon: <FaUserAlt />,       color: '#16A34A', bg: '#F0FDF4' },
               { label: 'Dias de aula',  val: diasComChamada.length,  icon: <FaCalendarAlt />,   color: '#4bc5e8', bg: '#edf8fd' },
               { label: 'Presenças',     val: totalPresencas,         icon: <FaCheckCircle />,   color: '#16a34a', bg: '#f0fdf4' },
               { label: 'Faltas',        val: totalFaltas,            icon: <FaTimesCircle />,   color: '#dc2626', bg: '#fef2f2' },
@@ -383,7 +383,7 @@ export default function Relatorios() {
                     <table style={{ width: '100%', borderCollapse: 'collapse', minWidth: 600 }}>
                       <thead>
                         <tr style={{ background: 'var(--nt-bg)', borderBottom: '1px solid var(--nt-border)' }}>
-                          {['Aluno','Turma','Aulas','Presenças','Faltas','Frequência','Status'].map(h => (
+                          {['Aluno','Curso','Aulas','Presenças','Faltas','Frequência','Status'].map(h => (
                             <th key={h} style={{ padding: '10px 14px', fontSize: 11, fontWeight: 700, color: 'var(--nt-text-muted)', textTransform: 'uppercase', letterSpacing: '.07em', textAlign: h === 'Aluno' ? 'left' : 'center' }}>{h}</th>
                           ))}
                         </tr>

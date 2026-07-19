@@ -24,20 +24,20 @@ const MESES_FULL = ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 
 
 // Paleta do design
 const P = {
-  primary: '#0447e4',
-  primCont: '#3663fd',
+  primary: '#16A34A',
+  primCont: '#22C55E',
   onPrimCont: '#ffffff',
-  secondary: '#1a3fc4',
-  secCont: '#5b7fff',
-  surface: '#f4f7ff',
-  surfLow: '#eef1ff',
-  surfHigh: '#dde3ff',
-  surfHighest: '#c7d0ff',
+  secondary: '#15803D',
+  secCont: '#4ADE80',
+  surface: '#f3fbf5',
+  surfLow: '#eafaf0',
+  surfHigh: '#d9f2e2',
+  surfHighest: '#c3ecd1',
   surfLowest: '#ffffff',
   outline: '#6b7280',
-  outlineVar: '#c7d2fe',
+  outlineVar: '#bbe8cc',
   onSurface: '#1a1c1e',
-  onSurfVar: '#3d4a65',
+  onSurfVar: '#3d4a3f',
   error: '#ba1a1a',
   errCont: '#ffdad6',
 };
@@ -269,7 +269,7 @@ export default function PortalAluno() {
 
               {/* ── HERO BANNER ── */}
               <section className="ap-hero">
-                <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(135deg, #0447e4f0 0%, #3663fdcc 100%)', zIndex: 1 }} />
+                <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(135deg, #16A34Af0 0%, #22C55Ecc 100%)', zIndex: 1 }} />
                 <div style={{ position: 'absolute', top: 0, right: 0, width: 200, height: '100%', opacity: .08, pointerEvents: 'none', zIndex: 1 }}>
                   <svg viewBox="0 0 200 200" style={{ width: '100%', height: '100%' }} xmlns="http://www.w3.org/2000/svg">
                     <path d="M47.5,-51.2C60.7,-43.8,70.1,-28.9,74.1,-12.3C78.1,4.3,76.6,22.6,67.6,35.9C58.6,49.2,42.1,57.5,25.4,62.8C8.7,68.2,-8.1,70.5,-23.4,65.8C-38.7,61.1,-52.4,49.3,-61.1,34.8C-69.8,20.3,-73.4,3.1,-69.5,-12.3C-65.6,-27.7,-54.2,-41.4,-41,-48.8C-27.7,-56.3,-13.9,-57.6,1,-58.8C15.8,-60,34.2,-58.7,47.5,-51.2Z" fill="#fff" transform="translate(100 100)" />
@@ -350,7 +350,7 @@ export default function PortalAluno() {
                           <table style={{ width: '100%', borderCollapse: 'collapse', textAlign: 'left' }}>
                             <thead style={{ borderBottom: `1px solid ${P.surfHighest}` }}>
                               <tr>
-                                {['Data', 'Status', 'Turma'].map(h => (
+                                {['Data', 'Status', 'Curso'].map(h => (
                                   <th key={h} style={{ padding: '8px 4px', fontSize: 10, fontWeight: 700, color: P.outline, textTransform: 'uppercase', letterSpacing: '.06em' }}>{h}</th>
                                 ))}
                               </tr>
@@ -507,7 +507,7 @@ export default function PortalAluno() {
                       </div>
                     </div>
                     <InfoLinha label="Matrícula" value={aluno.matricula} />
-                    <InfoLinha label="Turma" value={aluno.turma} />
+                    <InfoLinha label="Curso" value={aluno.turma} />
                     <InfoLinha label="Nascimento" value={aluno.dataNascimento ? fmtData(aluno.dataNascimento) : undefined} />
                     <InfoLinha label="Idade" value={aluno.idade ? `${aluno.idade} anos` : undefined} />
                     <InfoLinha label="Sexo" value={aluno.sexo} />

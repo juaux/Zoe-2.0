@@ -101,7 +101,7 @@ export default function Alunos() {
   useEffect(() => {
     const r = Math.floor(100000 + Math.random() * 900000);
     setForm(f => ({ ...f, matricula: `DI${r}` }));
-    supabase.from('Turmas').select('id, nome').then(({ data }) => setTurmas(data || []));
+    supabase.from('Cursos').select('id, curso').then(({ data }) => setTurmas((data || []).map((c: any) => ({ id: c.id, nome: c.curso }))));
   }, []);
 
   const set = (name: string, value: string) => {
@@ -137,7 +137,7 @@ export default function Alunos() {
     // campos fixos — sempre obrigatórios
     if (!form.nomeCompleto)   e.push('Nome Completo é obrigatório');
     if (!form.dataNascimento) e.push('Data de Nascimento é obrigatória');
-    if (!form.turma)          e.push('Selecione uma turma');
+    if (!form.turma)          e.push('Selecione um curso');
     // campos configuráveis — só valida se ativo E obrigatório
     const opcionais: { key: keyof FormData; msg: string }[] = [
       { key: 'sexo',    msg: 'Selecione o sexo' },
@@ -319,11 +319,11 @@ export default function Alunos() {
               <Field label="Data de Cadastro">
                 <input value={form.dataAtual} readOnly style={readonlyStyle} />
               </Field>
-              <Field label="Turma *" error={touched.turma && !form.turma ? 'Selecione uma turma' : undefined} half>
+              <Field label="Curso *" error={touched.turma && !form.turma ? 'Selecione um curso' : undefined} half>
                 <select name="turma" value={form.turma}
                   onChange={handleChange} onBlur={() => blur('turma')}
                   style={touched.turma && !form.turma ? selectErrStyle : selectStyle}>
-                  <option value="">Selecione uma turma</option>
+                  <option value="">Selecione um curso</option>
                   {turmas.map(t => <option key={t.id} value={t.nome}>{t.nome}</option>)}
                 </select>
               </Field>
@@ -529,7 +529,7 @@ export default function Alunos() {
                 cursor: loading ? 'not-allowed' : 'pointer',
                 display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 8,
                 transition: 'background 0.15s',
-                boxShadow: '0 -2px 12px rgba(255,68,3,0.15)',
+                boxShadow: '0 -2px 12px rgba(22,163,74,0.15)',
                 touchAction: 'manipulation',
               }}>
               {loading ? <><FaSpinner style={{ animation: 'spin 0.8s linear infinite' }} /> Cadastrando...</> : 'Cadastrar Aluno'}
@@ -577,7 +577,7 @@ export default function Alunos() {
       <style>{`
         @keyframes spin { to { transform: rotate(360deg); } }
         @keyframes slideIn { from { transform: translateX(20px); opacity: 0; } to { transform: translateX(0); opacity: 1; } }
-        input:focus, select:focus { border-color: var(--nt-primary) !important; box-shadow: 0 0 0 3px rgba(255,68,3,0.1); }
+        input:focus, select:focus { border-color: var(--nt-primary) !important; box-shadow: 0 0 0 3px rgba(22,163,74,0.1); }
       `}</style>
     </Layout>
   );

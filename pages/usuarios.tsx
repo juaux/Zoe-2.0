@@ -29,7 +29,7 @@ interface TreinRow    { id: number; nomeCompleto: string; especialidade?: string
 
 /* ─── Paleta por perfil ─── */
 const P: Record<string, { cor: string; bg: string; label: string; icon: React.ReactNode }> = {
-  admin:     { cor: '#FF4403', bg: '#fff2f0', label: 'Administrador', icon: <FaUserShield /> },
+  admin:     { cor: '#16A34A', bg: '#F0FDF4', label: 'Administrador', icon: <FaUserShield /> },
   professor: { cor: '#26bf94', bg: '#e6faf5', label: 'Professor',    icon: <FaChalkboardTeacher /> },
   aluno:     { cor: '#4bc5e8', bg: '#edf8fd', label: 'Aluno',        icon: <FaUserGraduate /> },
 };
@@ -59,7 +59,7 @@ function ModalSenha({ nome, onSalvar, onClose }: { nome: string; onSalvar: (s: s
         </div>
         <div style={{ display: 'flex', gap: 10 }}>
           <button onClick={() => senha.length >= 6 && onSalvar(senha)} disabled={senha.length < 6}
-            style={{ flex: 1, height: 40, background: '#FF4403', color: '#fff', border: 'none', borderRadius: 8, fontWeight: 700, cursor: senha.length < 6 ? 'not-allowed' : 'pointer', opacity: senha.length < 6 ? 0.6 : 1 }}>
+            style={{ flex: 1, height: 40, background: '#16A34A', color: '#fff', border: 'none', borderRadius: 8, fontWeight: 700, cursor: senha.length < 6 ? 'not-allowed' : 'pointer', opacity: senha.length < 6 ? 0.6 : 1 }}>
             Salvar
           </button>
           <button onClick={onClose} style={{ flex: 1, height: 40, background: '#f3f4f6', color: '#374151', border: 'none', borderRadius: 8, fontWeight: 600, cursor: 'pointer' }}>Cancelar</button>
@@ -305,7 +305,7 @@ export default function Usuarios() {
               </p>
             </div>
             <button onClick={() => setShowModal(true)}
-              style={{ display: 'flex', alignItems: 'center', gap: 8, background: '#FF4403', color: '#fff', border: 'none', borderRadius: 9, padding: '10px 20px', fontWeight: 700, cursor: 'pointer', fontSize: 14, flexShrink: 0 }}>
+              style={{ display: 'flex', alignItems: 'center', gap: 8, background: '#16A34A', color: '#fff', border: 'none', borderRadius: 9, padding: '10px 20px', fontWeight: 700, cursor: 'pointer', fontSize: 14, flexShrink: 0 }}>
               <FaPlus /> Novo Usuário
             </button>
           </div>
@@ -336,7 +336,7 @@ export default function Usuarios() {
 
           {/* Cards de resumo */}
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4,1fr)', gap: 12, marginBottom: 20 }}>
-            {([['todos','Todos','#374151','#f3f4f6'], ['admin','Admins','#FF4403','#fff2f0'], ['professor','Professores','#26bf94','#e6faf5'], ['aluno','Alunos','#4bc5e8','#edf8fd']] as const).map(([k, l, cor, bg]) => (
+            {([['todos','Todos','#374151','#f3f4f6'], ['admin','Admins','#16A34A','#F0FDF4'], ['professor','Professores','#26bf94','#e6faf5'], ['aluno','Alunos','#4bc5e8','#edf8fd']] as const).map(([k, l, cor, bg]) => (
               <button key={k} onClick={() => setFiltro(k)}
                 style={{ background: filtroPerfil === k ? bg : '#fff', border: `1.5px solid ${filtroPerfil === k ? cor : '#e5e7eb'}`, borderRadius: 10, padding: '12px 16px', cursor: 'pointer', textAlign: 'left', transition: 'all .15s' }}>
                 <div style={{ fontSize: 22, fontWeight: 800, color: cor, lineHeight: 1 }}>{counts[k]}</div>
@@ -442,7 +442,7 @@ export default function Usuarios() {
             <div style={{ fontSize: 12, fontWeight: 700, color: 'var(--nt-text-secondary)', marginBottom: 10, textTransform: 'uppercase', letterSpacing: '0.07em' }}>📋 Como funciona</div>
             <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 16, fontSize: 12.5, color: 'var(--nt-text-secondary)', lineHeight: 1.6 }}>
               <div>
-                <div style={{ fontWeight: 700, color: '#FF4403', marginBottom: 4 }}>👤 Tabela Usuários</div>
+                <div style={{ fontWeight: 700, color: '#16A34A', marginBottom: 4 }}>👤 Tabela Usuários</div>
                 Armazena logins de acesso (email + senha). É o que permite entrar no sistema. Um usuário aluno <em>deve</em> estar vinculado a um registro na tabela Alunos.
               </div>
               <div>

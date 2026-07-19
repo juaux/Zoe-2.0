@@ -72,9 +72,9 @@ async function fetchProfessoresQuery(): Promise<Professor[]> {
 }
 
 async function fetchTurmasQuery(): Promise<string[]> {
-  const { data, error } = await supabase.from('Turmas').select('nome').eq('ativo', true).order('nome');
+  const { data, error } = await supabase.from('Cursos').select('curso').eq('ativo', true).order('curso');
   if (error) throw new Error(error.message);
-  return data.map(t => t.nome);
+  return data.map(t => t.curso);
 }
 
 function Avatar({ professor, size = 40 }: { professor: Professor; size?: number }) {
@@ -275,7 +275,7 @@ export default function ListarProfessores() {
               <option value="matricula">Matrícula</option>
               <option value="cpf">CPF</option>
               <option value="especialidade">Especialidade</option>
-              <option value="turma">Turma</option>
+              <option value="turma">Curso</option>
             </select>
             {especialidades.length > 0 && (
               <select value={filterEspecialidade} onChange={e => setFilterEsp(e.target.value)}
@@ -367,7 +367,7 @@ export default function ListarProfessores() {
               <table style={{ width: '100%', borderCollapse: 'collapse', minWidth: 700 }}>
                 <thead>
                   <tr style={{ borderBottom: '1px solid var(--nt-border)', background: 'var(--nt-bg)' }}>
-                    {['Professor', 'Matrícula', 'Especialidade', 'Turma', 'Formação', 'Contato', 'Ações'].map((h, i) => (
+                    {['Professor', 'Matrícula', 'Especialidade', 'Curso', 'Formação', 'Contato', 'Ações'].map((h, i) => (
                       <th key={h} style={{ padding: '9px 14px', fontSize: 12, fontWeight: 600, color: 'var(--nt-text-muted)', textTransform: 'uppercase', letterSpacing: '0.08em', textAlign: i === 6 ? 'center' : 'left', whiteSpace: 'nowrap' }}>{h}</th>
                     ))}
                   </tr>
@@ -429,7 +429,7 @@ export default function ListarProfessores() {
                               </div>
                               {[
                                 { title: 'Dados Pessoais', rows: [['RG', professor.rg], ['CPF', professor.cpf], ['Nascimento', professor.dataNascimento ? new Date(professor.dataNascimento).toLocaleDateString('pt-BR') : null], ['Idade', professor.idade], ['Email', professor.email], ['Telefone', professor.telefone]] },
-                                { title: 'Profissional', rows: [['Especialidade', professor.especialidade], ['Formação', professor.formacao], ['Experiência', professor.experiencia], ['Turma', professor.turma]] },
+                                { title: 'Profissional', rows: [['Especialidade', professor.especialidade], ['Formação', professor.formacao], ['Experiência', professor.experiencia], ['Curso', professor.turma]] },
                                 { title: 'Endereço', rows: [['Endereço', professor.endereco], ['Bairro', professor.bairro], ['Cidade/UF', professor.cidade && professor.uf ? `${professor.cidade} — ${professor.uf}` : professor.cidade || professor.uf], ['CEP', professor.cep]] },
                               ].map(sec => (
                                 <div key={sec.title}>
@@ -519,9 +519,9 @@ export default function ListarProfessores() {
                     <input name="idade" value={formData.idade || ''} onChange={handleFormChange} style={fieldInputStyle} />
                   </div>
                   <div>
-                    <label style={fieldLabelStyle}>Turma</label>
+                    <label style={fieldLabelStyle}>Curso</label>
                     <select name="turma" value={formData.turma || ''} onChange={handleFormChange} style={fieldInputStyle}>
-                      <option value="">Selecione uma turma</option>
+                      <option value="">Selecione um curso</option>
                       {turmasList.map(turma => <option key={turma} value={turma}>{turma}</option>)}
                     </select>
                   </div>

@@ -14,7 +14,7 @@ export const ConfirmDialog: React.FC<ConfirmDialogProps> = ({
   title, message, confirmLabel = 'Confirmar', cancelLabel = 'Cancelar',
   onConfirm, onCancel, variant = 'danger',
 }) => {
-  const confirmBg = variant === 'danger' ? '#dc2626' : '#FF4403';
+  const confirmBg = variant === 'danger' ? '#dc2626' : '#16A34A';
 
   return (
     <div

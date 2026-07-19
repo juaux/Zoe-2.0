@@ -6,9 +6,9 @@ import { GetServerSideProps } from 'next';
 type Perfil = 'admin' | 'professor' | 'aluno';
 
 const PERFIS = [
-  { key: 'admin'     as Perfil, label: 'Administração', desc: 'Diretoria e gestão', cor: '#FF4403', bg: '#fff2f0' },
+  { key: 'admin'     as Perfil, label: 'Administração', desc: 'Diretoria e gestão', cor: '#16A34A', bg: '#F0FDF4' },
   { key: 'professor' as Perfil, label: 'Professor',     desc: 'Acesso às turmas',  cor: '#26bf94', bg: '#e6faf5' },
-  { key: 'aluno'     as Perfil, label: 'Aluno / Pai',   desc: 'Acompanhamento',    cor: '#4bc5e8', bg: '#edf8fd' },
+  { key: 'aluno'     as Perfil, label: 'Aluno / Pai',   desc: 'Acompanhamento',    cor: '#4ADE80', bg: '#F0FDF4' },
 ];
 
 export default function SignIn() {
@@ -48,10 +48,10 @@ export default function SignIn() {
 
         {/* ── Painel esquerdo (oculto no mobile) ── */}
         <div className="nt-auth-panel">
-          <div style={{ position: 'absolute', width: 280, height: 280, borderRadius: '50%', background: 'rgba(255,68,3,0.07)', bottom: -60, right: -60 }} />
+          <div style={{ position: 'absolute', width: 280, height: 280, borderRadius: '50%', background: 'rgba(22,163,74,0.07)', bottom: -60, right: -60 }} />
 
           <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', marginBottom: 52 }}>
-            <div style={{ width: 110, height: 110, overflow: 'hidden', marginBottom: 14, boxShadow: '0 8px 32px rgba(255,68,3,0.45)', flexShrink: 0 }}>
+            <div style={{ width: 110, height: 110, overflow: 'hidden', marginBottom: 14, boxShadow: '0 8px 32px rgba(22,163,74,0.45)', flexShrink: 0 }}>
               <img src="/logo.png" style={{ width: '100%', height: '100%', objectFit: 'cover' }} alt="Zoe" />
             </div>
             <div style={{ fontSize: 18, fontWeight: 800, color: '#fff', letterSpacing: '0.05em', textAlign: 'center' }}>ZOE</div>
@@ -59,9 +59,9 @@ export default function SignIn() {
           </div>
 
           <h2 style={{ fontSize: 28, fontWeight: 800, color: '#fff', lineHeight: 1.25, marginBottom: 16 }}>
-            Formando<br />campeões<br />
-            <span style={{ color: '#FF4403' }}>dentro e fora</span><br />
-            das quadras.
+            Educação que<br />transforma<br />
+            <span style={{ color: '#4ADE80' }}>dentro e fora</span><br />
+            da sala de aula.
           </h2>
           <p style={{ color: 'rgba(255,255,255,0.45)', fontSize: 13.5, lineHeight: 1.7, maxWidth: 300 }}>
             Gerencie alunos, professores e turmas com eficiência.
@@ -70,8 +70,8 @@ export default function SignIn() {
           <div style={{ marginTop: 40, display: 'flex', flexDirection: 'column', gap: 12 }}>
             {['Cadastro completo de alunos e professores', 'Organização por turmas e categorias', 'Chamada e controle de frequência'].map((f, i) => (
               <div key={i} style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
-                <div style={{ width: 20, height: 20, borderRadius: '50%', background: 'rgba(255,68,3,0.2)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
-                  <span style={{ color: '#FF4403', fontSize: 9, fontWeight: 700 }}>✓</span>
+                <div style={{ width: 20, height: 20, borderRadius: '50%', background: 'rgba(22,163,74,0.2)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
+                  <span style={{ color: '#16A34A', fontSize: 9, fontWeight: 700 }}>✓</span>
                 </div>
                 <span style={{ color: 'rgba(255,255,255,0.55)', fontSize: 12.5 }}>{f}</span>
               </div>
@@ -161,7 +161,7 @@ export default function SignIn() {
 
               <div style={{ padding: '10px 12px', background: '#f9fafb', borderRadius: 8, border: '1px solid #e5e7eb' }}>
                 <div style={{ fontSize: 11, fontWeight: 600, color: '#374151', marginBottom: 3 }}>Acesso admin padrão:</div>
-                <div style={{ fontSize: 12, color: '#6b7280', fontFamily: 'monospace' }}>admin@novostempos.com</div>
+                <div style={{ fontSize: 12, color: '#6b7280', fontFamily: 'monospace' }}>admin@zoe.com</div>
                 <div style={{ fontSize: 12, color: '#6b7280', fontFamily: 'monospace' }}>senha: admin123</div>
               </div>
             </div>

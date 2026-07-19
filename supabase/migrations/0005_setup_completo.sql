@@ -27,7 +27,7 @@ CREATE INDEX IF NOT EXISTS idx_usuarios_professor   ON usuarios (professor_id);
 INSERT INTO usuarios (nome, email, senha_hash, perfil, ativo)
 VALUES (
   'Administrador',
-  'admin@novostempos.comauthorize ',
+  'admin@zoe.comauthorize ',
   '$2b$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2uheWG/igi.',
   'admin',
   true
