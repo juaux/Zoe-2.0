@@ -231,7 +231,7 @@ export default function CursosPage() {
   };
 
   const btnPrimary: React.CSSProperties = {
-    padding: '9px 20px', background: '#3b82f6', color: '#fff',
+    padding: '9px 20px', background: '#16A34A', color: '#fff',
     border: 'none', borderRadius: '8px', cursor: 'pointer',
     fontSize: '14px', fontWeight: 600,
   };
@@ -314,7 +314,7 @@ export default function CursosPage() {
                 {cursosFiltrados.map((curso, i) => (
                   <tr key={curso.id} style={{ borderBottom: i < cursosFiltrados.length - 1 ? '1px solid #f3f4f6' : 'none', background: !curso.ativo ? '#f9fafb' : '#fff' }}>
                     <td style={{ padding: '12px 16px' }}>
-                      <div style={{ width: 36, height: 36, borderRadius: '50%', overflow: 'hidden', background: '#e0e7ff', color: '#4f46e5', fontSize: '14px', fontWeight: 700, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                      <div style={{ width: 56, height: 56, borderRadius: 10, overflow: 'hidden', background: '#e0e7ff', color: '#16A34A', fontSize: '18px', fontWeight: 700, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                         {curso.imagem
                           ? <img src={curso.imagem} alt={curso.curso} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
                           : curso.curso[0]}
